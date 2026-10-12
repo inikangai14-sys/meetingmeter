@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>meetingmeter — every meeting has a price tag</title>
+  <meta name="description" content="A real-time meeting cost calculator. See exactly how much your meeting is burning, per second." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <p class="logo">meeting<span>meter</span></p>
+      <p class="tagline">every meeting has a price tag.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="ticker-card" aria-live="polite">
+      <p class="ticker-label">this meeting has cost</p>
+      <p class="ticker" id="ticker">$0.00</p>
+      <div class="ticker-meta">
+        <div>
+          <span class="meta-label">elapsed</span>
+          <span class="meta-value" id="elapsed">00:00:00</span>
+        </div>
+        <div>
+          <span class="meta-label">burn rate</span>
+          <span class="meta-value" id="burnRate">$0.00/min</span>
+        </div>
+        <div>
+          <span class="meta-label">people</span>
+          <span class="meta-value" id="peopleCount">4</span>
+        </div>
+      </div>
+      <p class="wit" id="wit">press start. watch money evaporate.</p>
+    </section>
+
+    <section class="config-card">
+      <h2>set it up</h2>
+      <div class="fields">
+        <label class="field">
+          <span>meeting title <em>(optional)</em></span>
+          <input type="text" id="title" maxlength="60" placeholder="Q3 planning sync" autocomplete="off" />
+        </label>
+        <label class="field">
+          <span>participants</span>
+          <input type="number" id="participants" min="1" max="1000" value="4" inputmode="numeric" />
+        </label>
+        <div class="field-row">
+          <label class="field">
+            <span>currency</span>
+            <select id="currency">
+              <option value="IDR" selected>IDR — Rp</option>
+              <option value="USD">USD — $</option>
+              <option value="EUR">EUR — €</option>
+              <option value="GBP">GBP — £</option>
+              <option value="JPY">JPY — ¥</option>
+              <option value="SGD">SGD — S$</option>
+              <option value="AUD">AUD — A$</option>
+              <option value="MYR">MYR — RM</option>
+              <option value="INR">INR — ₹</option>
+              <option value="PHP">PHP — ₱</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>avg. cost / person / hour</span>
+            <input type="number" id="rate" min="0" max="10000000" value="150000" inputmode="decimal" />
+          </label>
+        </div>
+      </div>
+      <div class="controls">
+        <button id="startPause" class="btn primary">start</button>
+        <button id="reset" class="btn ghost">reset</button>
+      </div>
+      <p class="hint">tip: use fully-loaded cost (salary + benefits + overhead), not just salary.</p>
+    </section>
+
+    <section class="share-card" id="shareCard" hidden>
+      <h2>the damage report</h2>
+      <p class="report" id="report"></p>
+      <div class="controls">
+        <button id="share" class="btn primary">share it</button>
+        <button id="copy" class="btn ghost">copy text</button>
+      </div>
+      <p class="hint" id="copyHint" hidden>copied to clipboard.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>built for everyone who ever thought <q>this could have been an email.</q></p>
+      <p class="fine">100% client-side — no data leaves your browser.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
